@@ -16,20 +16,15 @@ pipeline {
     }
 
     stage('package') {
-      parallel {
-        stage('package') {
-          steps {
-            echo 'this is the package job'
-            sh 'npm run package'
-          }
-        }
+      steps {
+        echo 'this is the package job'
+        sh 'npm run package'
+      }
+    }
 
-        stage('archive') {
-          steps {
-            archiveArtifacts '**/distribution/*.zip'
-          }
-        }
-
+    stage('archive') {
+      steps {
+        archiveArtifacts '**/distribution/*.zip'
       }
     }
 
